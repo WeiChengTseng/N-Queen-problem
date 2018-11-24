@@ -4,7 +4,7 @@ class N_QueenProblem():
     def __init__(self, n):
         self.env = environment.Environment(n)
         self.size = n
-        self.current_state = {}
+        self.current_state = []
         self._random_generate()
         pass
         return
@@ -38,14 +38,17 @@ class N_QueenProblem():
             total_cost += self._factorial(n) / (self._factorial(2)*self._factorial(n-2))
         return total_cost
     
-    def get_successors(self):
-
+    def get_successors(self, state, successors=[], col=0):
+        # recursive
+        if successors == []:
+            
+            pass
         return
 
     def _random_generate(self):
         for i in range(self.size):
             rand = random.randint(0, self.size-1)
-            self.current_state | {(i, rand)}
+            self.current_state.append(i, rand)
             self.env.grid[rand, i] = 'Q' 
         return
     
