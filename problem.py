@@ -10,29 +10,33 @@ class N_QueenProblem():
     def move(self, ori, new):
         tmp = self.env.grid[new[1]][new[0]]
         self.env.grid[new[1]][new[0]] = self.env.grid[ori[1]][ori[0]]
-        self.env.grid[ori[1]][ori[0]] = self.env.grid[new[1]][new[0]]
+        self.env.grid[ori[1]][ori[0]] = tmp
         pass
 
     def cost(self):
         total_cost = 0
         for i in range(self.size):
-            n = self.env.grid[i, :].find('Q')
+            n = self.env.grid[i, :].count('Q')
             if n >= 2:
                 total_cost += self._factorial(n) / (self._factorial(2)*self._factorial(n-2))
 
-            n = self.env.grid[:, i].find('Q')
+            n = self.env.grid[:, i].count('Q')
             if n < 2:
                 continue 
             total_cost += self._factorial(n) / (self._factorial(2)*self._factorial(n-2))
 
-        n = [self.env.grid[i, i] for i in self.size].find('Q')
+        n = [self.env.grid[i, i] for i in self.size].count('Q')
         if n >= 2:
             total_cost += self._factorial(n) / (self._factorial(2)*self._factorial(n-2))
-        n = [self.env.grid[-i, i] for i in self.size].find('Q')
+        n = [self.env.grid[-i, i] for i in self.size].count('Q')
         if n >= 2:
             total_cost += self._factorial(n) / (self._factorial(2)*self._factorial(n-2))
         return total_cost
     
+    def get_successors(self):
+
+        return
+
     def _random_generate(self):
         for i in range(self.size):
             self.env.grid[random.randint(0, self.size-1), i] = 'Q' 
