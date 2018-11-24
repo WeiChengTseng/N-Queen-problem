@@ -43,7 +43,7 @@ class N_QueenProblem():
         if successors == []:
             
             pass
-        return
+        return successors
 
     def _random_generate(self):
         for i in range(self.size):
