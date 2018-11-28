@@ -1,6 +1,7 @@
 import environment
 import random
 import copy
+import numpy as np
 class N_QueenProblem():
     def __init__(self, n):
         self.env = environment.Environment(n)
@@ -17,46 +18,54 @@ class N_QueenProblem():
         self.env.grid[ori[0]][ori[1]] = tmp
         pass
 
-    def cost(self, state):
+    def cost(self, state=None):
+        if state is None:
+            state = self.current_state
         total_cost = 0
-        grid = [[None for i in range(self.size)] for j in range(self.size)]
+        grid = np.zeros((self.size, self.size), dtype=int)
         for q in state:
-            grid[q[1], q[0]] = 'Q'
+            grid[q] = 1
         for i in range(self.size):
-            n = grid[i, :].count('Q')
+            n = np.count_nonzero(grid[i, :])
             if n >= 2:
                 total_cost += self._factorial(n) / (self._factorial(2)*self._factorial(n-2))
 
-            n = grid[:, i].count('Q')
+            n = np.count_nonzero(grid[:, i])
             if n < 2:
                 continue 
             total_cost += self._factorial(n) / (self._factorial(2)*self._factorial(n-2))
 
-        n = [grid[i, i] for i in self.size].count('Q')
+
+        n = [grid[i, i] for i in range(self.size)].count(1)
         if n >= 2:
             total_cost += self._factorial(n) / (self._factorial(2)*self._factorial(n-2))
-        n = [grid[-i, i] for i in self.size].count('Q')
+        n = [grid[-i, i] for i in range(self.size)].count(1)
         if n >= 2:
             total_cost += self._factorial(n) / (self._factorial(2)*self._factorial(n-2))
-        return total_cost
+        return int(total_cost)
     
-    def get_successors(self, state, successors=[], col=0):
-        # recursive
+    def get_successors(self, state=None, successors=[], col=0):
+        if state is None:
+            state = self.current_state
 
         for i in range(self.size):
-            avai = list(range(self.size)).remove(state[i][1])
+            avai = list(range(self.size))
+            avai.remove(state[i][1])
             for j in avai:
                 succ = copy.deepcopy(state)
-                succ[i][1] = avai[j]
-                successors.append(succ)
-            
+                succ[i] = (succ[i][0], j)
+                successors.append(succ)   
         return successors
+
+    def show(self):
+        self.env.show()
+        return
 
     def _random_generate(self):
         for i in range(self.size):
             rand = random.randint(0, self.size-1)
             self.current_state.append((i, rand))
-            self.env.grid[rand, i] = 'Q' 
+            self.env.grid[i][rand] = 1 
         return
     
     def _combination(self, n):
@@ -71,4 +80,6 @@ class N_QueenProblem():
 
 if __name__ == '__main__':
     prob = N_QueenProblem(8)
-    print(prob._combination(1))
+    # print(prob._combination(1))
+    prob.show()
+    print(len(prob.get_successors()))

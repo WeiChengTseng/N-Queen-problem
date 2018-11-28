@@ -1,4 +1,5 @@
 import numpy as np
+import problem
 
 class HC():
     def __init__(self, problem):
@@ -10,9 +11,11 @@ class HC():
         while True:
             successors = self.prob.get_successors(self.current_state)
             costs = [self.prob.cost(i) for i in successors]
-            neighbor = successors[np.argmin(costs)]
+            neighbor_idx = np.argmin(costs)
+            neighbor = successors[neighbor_idx]
+            print(costs[neighbor_idx])
 
-            if costs[neighbor] > self.prob.cost(self.current_state):
+            if costs[neighbor_idx] > self.prob.cost(self.current_state):
                 return self.current_state
             self.current_state = neighbor
 
@@ -20,4 +23,7 @@ class HC():
         print(self.current_state)
         return
 
-    
+if __name__ == '__main__':
+    prob = problem.N_QueenProblem(8)
+    hc = HC(prob)
+    hc.loop()
