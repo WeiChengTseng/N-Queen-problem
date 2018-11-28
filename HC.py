@@ -2,9 +2,10 @@ import numpy as np
 import problem
 
 class HC():
-    def __init__(self, problem):
+    def __init__(self, problem, max_iter=100):
         self.prob = problem
         self.current_state = None
+        self.max_iter = max_iter
         return
     
     def loop(self):
@@ -24,6 +25,6 @@ class HC():
         return
 
 if __name__ == '__main__':
-    prob = problem.N_QueenProblem(8)
+    prob = problem.N_QueenProblem(50)
     hc = HC(prob)
     hc.loop()

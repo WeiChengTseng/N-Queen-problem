@@ -19,6 +19,7 @@ class N_QueenProblem():
         pass
 
     def cost(self, state=None):
+        # has bug
         if state is None:
             state = self.current_state
         total_cost = 0
