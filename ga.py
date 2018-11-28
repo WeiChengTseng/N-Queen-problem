@@ -1,6 +1,6 @@
 class GA():
-    def __init__(self):
-
+    def __init__(self, problem):
+        self.prob = problem
         return
 
     def selection(self, population, fitness_fn):

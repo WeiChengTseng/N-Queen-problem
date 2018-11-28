@@ -8,10 +8,12 @@ class Environment():
     def show(self):
         for i in range(self.size):
             for j in range(self.size):
-                print('%4s' % (self.grid[i][j]))
+                print('%6s' % (self.grid[i][j]), end='')
+            print()
     
         print('-' * 4 * self.size)
     
 class Visualization():
     def __init__(self):
         pass
+

@@ -1,18 +1,20 @@
 import environment
 import random
+import copy
 class N_QueenProblem():
     def __init__(self, n):
         self.env = environment.Environment(n)
         self.size = n
         self.current_state = []
         self._random_generate()
+        self.closed = []
         pass
         return
 
     def move(self, ori, new):
-        tmp = self.env.grid[new[1]][new[0]]
-        self.env.grid[new[1]][new[0]] = self.env.grid[ori[1]][ori[0]]
-        self.env.grid[ori[1]][ori[0]] = tmp
+        tmp = self.env.grid[new[0]][new[1]]
+        self.env.grid[new[0]][new[1]] = self.env.grid[ori[0]][ori[1]]
+        self.env.grid[ori[0]][ori[1]] = tmp
         pass
 
     def cost(self, state):
@@ -40,15 +42,20 @@ class N_QueenProblem():
     
     def get_successors(self, state, successors=[], col=0):
         # recursive
-        if successors == []:
+
+        for i in range(self.size):
+            avai = list(range(self.size)).remove(state[i][1])
+            for j in avai:
+                succ = copy.deepcopy(state)
+                succ[i][1] = avai[j]
+                successors.append(succ)
             
-            pass
         return successors
 
     def _random_generate(self):
         for i in range(self.size):
             rand = random.randint(0, self.size-1)
-            self.current_state.append(i, rand)
+            self.current_state.append((i, rand))
             self.env.grid[rand, i] = 'Q' 
         return
     
