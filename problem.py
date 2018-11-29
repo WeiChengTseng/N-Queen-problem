@@ -36,13 +36,30 @@ class N_QueenProblem():
                 continue 
             total_cost += self._factorial(n) / (self._factorial(2)*self._factorial(n-2))
 
+        for k in range(self.size):
+            dia = [grid[i+k, i] for i in range(self.size-k)]
+            n = dia.count(1)
+            if n >= 2:
+                total_cost += self._factorial(n) / (self._factorial(2)*self._factorial(n-2))
 
-        n = [grid[i, i] for i in range(self.size)].count(1)
-        if n >= 2:
-            total_cost += self._factorial(n) / (self._factorial(2)*self._factorial(n-2))
-        n = [grid[-i, i] for i in range(self.size)].count(1)
-        if n >= 2:
-            total_cost += self._factorial(n) / (self._factorial(2)*self._factorial(n-2))
+        for k in range(1, self.size):
+            dia = [grid[i, i+k] for i in range(self.size-k)]
+            n = dia.count(1)
+            if n >= 2:
+                total_cost += self._factorial(n) / (self._factorial(2)*self._factorial(n-2))
+
+        for k in range(self.size):
+            dia = [grid[-i-k-1, i] for i in range(self.size-k)]
+            n = dia.count(1)
+            if n >= 2:
+                total_cost += self._factorial(n) / (self._factorial(2)*self._factorial(n-2))
+
+        for k in range(1, self.size):
+            dia = [grid[-i-1, i+k] for i in range(self.size-k)]
+            n = dia.count(1)
+            if n >= 2:
+                total_cost += self._factorial(n) / (self._factorial(2)*self._factorial(n-2))
+
         return int(total_cost)
     
     def get_successors(self, state=None, successors=[], col=0):
@@ -83,4 +100,5 @@ if __name__ == '__main__':
     prob = N_QueenProblem(8)
     # print(prob._combination(1))
     prob.show()
-    print(len(prob.get_successors()))
+    print('cost =', prob.cost())
+    # print(len(prob.get_successors()))
