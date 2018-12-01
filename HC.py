@@ -22,6 +22,8 @@ class HC():
             neighbor_idx = np.argmin(costs)
             neighbor = successors[neighbor_idx]
             # print(costs[neighbor_idx])
+            print(self.prob.cost(self.current_state))
+            print(costs)
 
             if costs[neighbor_idx] >= self.prob.cost(self.current_state):
                 break
@@ -32,6 +34,7 @@ class HC():
         self.runtime = time.time() - start_time
         # print(self.runtime)
         # print(self.cost_history[-1])
+        print('---')
         return
 
     def result(self, visualization=False):
@@ -48,7 +51,7 @@ class HC():
         return
 
 if __name__ == '__main__':
-    prob = problem.N_QueenProblem(8)
+    prob = problem.N_QueenProblem(15)
     hc = HC(prob, max_iter=30)
     hc.loop()
     hc.result(visualization=True)

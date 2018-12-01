@@ -12,6 +12,7 @@ class N_QueenProblem():
         self._random_generate()
         self.cost_map = dict({})
         random.seed(time.time())
+        # np.random.seed(int(time.time()))
         return
 
     def move(self, ori, new):
@@ -78,17 +79,16 @@ class N_QueenProblem():
             return int(total_cost)
     
     def get_successors(self, state=None):
-        successors = []
-        if state is None:
-            state = self.current_state
+        successors, combination = [], []
+        for i in range(self.size-1):
+            for j in range(i+1, self.size):
+                combination.append((i, j))
 
-        for i in range(self.size):
-            avai = list(range(self.size))
-            avai.remove(state[i][1])
-            for j in avai:
-                succ = list(copy.deepcopy(state))
-                succ[i] = (succ[i][0], j)
-                successors.append(tuple(succ))
+        for com in combination:
+            succ = list(copy.deepcopy(state))
+            succ[com[0]], succ[com[1]] = (com[0], succ[com[1]]), (com[1], succ[com[0]])
+            successors.append(tuple(succ))
+        # print(successors)
         return successors
 
     def show(self):
@@ -96,10 +96,10 @@ class N_QueenProblem():
         return
 
     def _random_generate(self):
+        choice = np.random.choice(self.size, self.size, replace=False)
         for i in range(self.size):
-            rand = random.randint(0, self.size-1)
-            self.current_state += ((i, rand), )
-            self.env.grid[i][rand] = 1 
+            self.current_state += ((i, choice[i]), )
+            self.env.grid[i][choice[i]] = 1 
         return
     
     def _combination(self, n):
