@@ -12,7 +12,6 @@ class N_QueenProblem():
         self._random_generate()
         self.closed = []
         random.seed(time.time())
-        pass
         return
 
     def move(self, ori, new):
@@ -23,7 +22,7 @@ class N_QueenProblem():
 
     def cost(self, state=None):
         '''
-        Calculate the cost of a state
+        Calculate the cost of a given state.
 
         Input
         - state: a state of the n-queen problem 
@@ -73,7 +72,8 @@ class N_QueenProblem():
 
         return int(total_cost)
     
-    def get_successors(self, state=None, successors=[], col=0):
+    def get_successors(self, state=None):
+        successors = []
         if state is None:
             state = self.current_state
 
@@ -95,7 +95,6 @@ class N_QueenProblem():
             rand = random.randint(0, self.size-1)
             self.current_state.append((i, rand))
             self.env.grid[i][rand] = 1 
-        # print(rand)
         return
     
     def _combination(self, n):
