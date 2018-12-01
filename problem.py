@@ -2,6 +2,8 @@ import environment
 import random
 import copy
 import numpy as np
+import time
+
 class N_QueenProblem():
     def __init__(self, n):
         self.env = environment.Environment(n)
@@ -9,6 +11,7 @@ class N_QueenProblem():
         self.current_state = []
         self._random_generate()
         self.closed = []
+        random.seed(time.time())
         pass
         return
 
@@ -19,7 +22,15 @@ class N_QueenProblem():
         pass
 
     def cost(self, state=None):
-        # has bug
+        '''
+        Calculate the cost of a state
+
+        Input
+        - state: a state of the n-queen problem 
+        
+        Output
+        - total_state: the cost of the state
+        '''
         if state is None:
             state = self.current_state
         total_cost = 0
@@ -84,6 +95,7 @@ class N_QueenProblem():
             rand = random.randint(0, self.size-1)
             self.current_state.append((i, rand))
             self.env.grid[i][rand] = 1 
+        # print(rand)
         return
     
     def _combination(self, n):

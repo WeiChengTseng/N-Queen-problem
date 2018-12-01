@@ -6,7 +6,7 @@ import time
 class HC():
     def __init__(self, problem, max_iter=100):
         self.prob = problem
-        self.current_state = None
+        self.current_state = self.prob.current_state
         self.max_iter = max_iter
         self.cost_history = []
         self.runtime = 0
@@ -24,19 +24,22 @@ class HC():
             # print(costs[neighbor_idx])
 
             if costs[neighbor_idx] >= self.prob.cost(self.current_state):
-                return self.current_state
+                break
             self.current_state = neighbor
             num_iter += 1
             if num_iter >= self.max_iter:
                 break
         self.runtime = time.time() - start_time
-        print(self.runtime)
+        # print(self.runtime)
+        # print(self.cost_history[-1])
         return
 
     def result(self, visualization=False):
         # print(self.current_state)
         if visualization:
             plt.plot(range(len(self.cost_history)), self.cost_history, 'o-')
+            plt.xlabel('the number of iterations')
+            plt.ylabel('the number of attacks')
             plt.show()
         return self.current_state, self.runtime, self.prob.cost(self.current_state), self.cost_history
 
@@ -48,4 +51,4 @@ if __name__ == '__main__':
     prob = problem.N_QueenProblem(8)
     hc = HC(prob, max_iter=30)
     hc.loop()
-    hc.result()
+    hc.result(visualization=True)
