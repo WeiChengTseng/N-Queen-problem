@@ -76,6 +76,7 @@ plt.legend()
 plt.grid()
 # plt.tight_layout()
 plt.savefig('./result/8-queen.jpg', dpi=500)
+plt.gcf().clear()
 # plt.show()
 
 # exit(0)

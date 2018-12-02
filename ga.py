@@ -6,7 +6,7 @@ import problem_new as problem
 import matplotlib.pyplot as plt
 
 class GA():
-    def __init__(self, problem, mutation_rate=0.05,population_size=50, max_iter=100):
+    def __init__(self, problem, mutation_rate=0.1,population_size=50, max_iter=100):
         self.prob = problem
         # self.current_state = problem.random_generate_state()
         self.max_iter = max_iter
