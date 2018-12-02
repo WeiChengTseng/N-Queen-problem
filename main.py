@@ -17,8 +17,8 @@ for i in range(num_trails):
         num_succ += 1
     del prob, hc
 
-print('    Problem (1): 8-queen problem (n = 8)')     
-print('Hill Climbing')  
+print('Problem (1): 8-queen problem (n = 8)')     
+print('    Hill Climbing')  
 print('\tAverage Runtime :', np.average(aver_runtime))
 print('\tAverage Number of Attacks :', np.average(aver_cost))
 print('\tSuccess Rate :', num_succ / num_trails)
