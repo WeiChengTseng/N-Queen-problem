@@ -62,8 +62,8 @@ print('\tSuccess Rate :', num_succ / num_trails)
 
 aver_cost, aver_runtime, num_succ = [], [], 0
 for i in range(num_trails):
-    prob = problem.N_QueenProblem(8)
-    ga = GA.GA(prob, max_iter=30)
+    prob = problem.N_QueenProblem(50)
+    ga = GA.GA(prob, max_iter=80)
     ga.loop()
     sol, runtime, final_cost, cost_his = ga.result()
     aver_runtime.append(runtime)
