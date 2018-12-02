@@ -17,7 +17,7 @@ for i in range(num_trails):
         num_succ += 1
     del prob, hc
 
-print('Problem (1): 8-queen problem (n = 8)')     
+print('    Problem (1): 8-queen problem (n = 8)')     
 print('Hill Climbing')  
 print('\tAverage Runtime :', np.average(aver_runtime))
 print('\tAverage Number of Attacks :', np.average(aver_cost))
@@ -35,8 +35,7 @@ for i in range(num_trails):
         num_succ += 1
     del prob, ga
 
-print('Problem (1): 8-queen problem (n = 8)')   
-print('Genetic Algorithm')    
+print('    Genetic Algorithm')    
 print('\tAverage Runtime :', np.average(aver_runtime))
 print('\tAverage Number of Attacks :', np.average(aver_cost))
 print('\tSuccess Rate :', num_succ / num_trails)
@@ -55,7 +54,25 @@ for i in range(num_trails):
         num_succ += 1
     del prob, hc
 
-print('Problem (1): 50-queen problem (n = 50)')     
+print('Problem (2): 50-queen problem (n = 50)')    
+print('    Hill Climbing')   
+print('\tAverage Runtime :', np.average(aver_runtime))
+print('\tAverage Number of Attacks :', np.average(aver_cost))
+print('\tSuccess Rate :', num_succ / num_trails)
+
+aver_cost, aver_runtime, num_succ = [], [], 0
+for i in range(num_trails):
+    prob = problem.N_QueenProblem(8)
+    ga = GA.GA(prob, max_iter=30)
+    ga.loop()
+    sol, runtime, final_cost, cost_his = ga.result()
+    aver_runtime.append(runtime)
+    aver_cost.append(final_cost)
+    if final_cost == 0:
+        num_succ += 1
+    del prob, ga
+
+print('    Genetic Algorithm')    
 print('\tAverage Runtime :', np.average(aver_runtime))
 print('\tAverage Number of Attacks :', np.average(aver_cost))
 print('\tSuccess Rate :', num_succ / num_trails)
