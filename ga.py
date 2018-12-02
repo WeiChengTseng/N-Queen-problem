@@ -15,7 +15,7 @@ class GA():
         self.population = self._random_generate_population()
         self.m_rate = mutation_rate
         self.fitness_fn = self.prob.cost
-        self.parent_size = int(population_size * 1)
+        self.parent_size = int(population_size * 0.8)
         self.fitness_history = []
         return
 
