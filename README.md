@@ -32,7 +32,7 @@ The N queens puzzle is the problem of placing eight chess queens on an N×N ches
 |Hill Climbing   |0.3666| 
 |Geneic Algorithm|0.8333| 
 
-![](./result/8-queen.jpg)
+![](./result/8-queen.png)
 ### 2. 50-queen problem (n = 50)
 
 (a) List all the results (average #attacks in the final configuration) from the two methods. 
@@ -56,7 +56,7 @@ The N queens puzzle is the problem of placing eight chess queens on an N×N ches
 |Hill Climbing   |0.0| 
 |Geneic Algorithm|the Final Number of Attacks| 
 
-![](./result/50-queen.jpg)
+![](./result/50-queen.png)
 ## Source Code
 * main.py
 * problem.py
