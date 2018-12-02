@@ -22,7 +22,7 @@ class HC():
             costs = [self.prob.cost(i) for i in successors]
             neighbor_idx = np.argmin(costs)
             neighbor = successors[neighbor_idx]
-            print(costs[neighbor_idx])
+            # print(costs[neighbor_idx])
             # print(self.prob.cost(self.current_state))
             # print(costs)
 

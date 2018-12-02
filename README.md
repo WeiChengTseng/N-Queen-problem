@@ -13,18 +13,18 @@ The N queens puzzle is the problem of placing eight chess queens on an N×N ches
 (a) List all the results (average #attacks in the final configuration) from the two methods.  
 |Methods         |the Final Number of Attacks|  
 |----------------|---------------------------|
-|Hill Climbing   |1.167| 
-|Geneic Algorithm|the Final Number of Attacks| 
+|Hill Climbing   |0.666| 
+|Geneic Algorithm|0.166| 
 (b) Compare the average running time for the three methods to get a solution.  
 |Methods         |Average Runtime|  
 |----------------|---------------------------|
-|Hill Climbing   |0.224 seconds| 
-|Geneic Algorithm|the Final Number of Attacks| 
+|Hill Climbing   |6.64e-3 seconds| 
+|Geneic Algorithm|0.119 seconds| 
 (c) Compare the success rate (SR) of HC and GA.
 |Methods         |Success Rate|  
 |----------------|---------------------------|
-|Hill Climbing   |0.1667| 
-|Geneic Algorithm|the Final Number of Attacks| 
+|Hill Climbing   |0.3666| 
+|Geneic Algorithm|0.8333| 
 ### 2. 50-queen problem (n = 50)
 |Methods         |the Final Number of Attacks|  
 |----------------|---------------------------|
