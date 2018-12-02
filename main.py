@@ -42,6 +42,7 @@ print('\tAverage Number of Attacks :', np.average(aver_cost))
 print('\tSuccess Rate :', num_succ / num_trails)
 hc_avg, hc_std = statics(hc_cost)
 x_range = np.arange(len(hc_avg))
+plt.rcParams["figure.figsize"] = [16, 5]
 plt.plot(x_range, hc_avg, label='Hill Climbing')
 plt.fill_between(x_range, hc_avg + hc_std, hc_avg - hc_std, alpha=0.15)
 
@@ -68,7 +69,6 @@ x_range = np.arange(len(ga_avg))
 plt.plot(x_range, ga_avg, label='Genetic Algorithm')
 plt.fill_between(x_range, ga_avg + ga_std, ga_avg - ga_std, alpha=0.15)
 
-plt.rcParams["figure.figsize"] = [16, 5]
 plt.xlabel('iterations')
 plt.ylabel('the number of attacks')
 plt.title('Comparison for Different Methods for 8-Queen Problem')
@@ -102,6 +102,7 @@ print('\tAverage Number of Attacks :', np.average(aver_cost))
 print('\tSuccess Rate :', num_succ / num_trails)
 hc_avg, hc_std = statics(hc_cost)
 x_range = np.arange(len(hc_avg))
+plt.rcParams["figure.figsize"] = [16, 5]
 plt.plot(x_range, hc_avg, label='Hill Climbing')
 plt.fill_between(x_range, hc_avg + hc_std, hc_avg - hc_std, alpha=0.15)
 
@@ -128,7 +129,6 @@ x_range = np.arange(len(ga_avg))
 plt.plot(x_range, ga_avg, label='Genetic Algorithm')
 plt.fill_between(x_range, ga_avg + ga_std, ga_avg - ga_std, alpha=0.15)
 
-plt.rcParams["figure.figsize"] = [16, 5]
 plt.xlabel('iterations')
 plt.ylabel('the number of attacks')
 plt.title('Comparison for Different Methods for 50-Queen Problem')
