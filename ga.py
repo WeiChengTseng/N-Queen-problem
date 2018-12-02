@@ -128,7 +128,7 @@ if __name__ == '__main__':
     y = (0, 1, 5, 3, 2, 4)
     
     prob = problem.N_QueenProblem(50)
-    ga = GA(prob, population_size=1000, max_iter=120)
+    ga = GA(prob, population_size=2000, max_iter=200)
     ga.loop()
     print(ga.result(True)[2])
 
