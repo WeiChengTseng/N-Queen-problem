@@ -9,19 +9,69 @@ class N_QueenProblem():
         self.env = environment.Environment(n)
         self.size = n
         self.current_state = ()
-        self._random_generate()
+        # self._random_generate()
         self.cost_map = dict({})
         random.seed(time.time())
-        # np.random.seed(int(time.time()))
         return
 
-    def move(self, ori, new):
-        tmp = self.env.grid[new[0]][new[1]]
-        self.env.grid[new[0]][new[1]] = self.env.grid[ori[0]][ori[1]]
-        self.env.grid[ori[0]][ori[1]] = tmp
-        pass
-
     def cost(self, state=None):
+        '''
+        Calculate the cost of a given state.
+
+        Input
+        - state: a state of the n-queen problem 
+        
+        Output
+        - total_state: the cost of the state
+        '''
+        if state is None:
+            state = self.current_state
+
+        if state in self.cost_map.keys():
+            return self.cost_map[state]
+        else:
+            total_cost = 0
+            grid = np.zeros((self.size, self.size), dtype=int)
+            for inx, q in enumerate(state):
+                grid[inx, q] = 1
+            for i in range(self.size):
+                n = np.count_nonzero(grid[i, :])
+                if n >= 2:
+                    total_cost += self._factorial(n) / (self._factorial(2)*self._factorial(n-2))
+
+                n = np.count_nonzero(grid[:, i])
+                if n < 2:
+                    continue 
+                total_cost += self._factorial(n) / (self._factorial(2)*self._factorial(n-2))
+
+            for k in range(self.size):
+                dia = [grid[i+k, i] for i in range(self.size-k)]
+                n = dia.count(1)
+                if n >= 2:
+                    total_cost += self._factorial(n) / (self._factorial(2)*self._factorial(n-2))
+
+            for k in range(1, self.size):
+                dia = [grid[i, i+k] for i in range(self.size-k)]
+                n = dia.count(1)
+                if n >= 2:
+                    total_cost += self._factorial(n) / (self._factorial(2)*self._factorial(n-2))
+
+            for k in range(self.size):
+                dia = [grid[-i-k-1, i] for i in range(self.size-k)]
+                n = dia.count(1)
+                if n >= 2:
+                    total_cost += self._factorial(n) / (self._factorial(2)*self._factorial(n-2))
+
+            for k in range(1, self.size):
+                dia = [grid[-i-1, i+k] for i in range(self.size-k)]
+                n = dia.count(1)
+                if n >= 2:
+                    total_cost += self._factorial(n) / (self._factorial(2)*self._factorial(n-2))
+
+            self.cost_map[state] = int(total_cost)
+            return int(total_cost)
+
+    def cost_old(self, state=None):
         '''
         Calculate the cost of a given state.
 
@@ -77,8 +127,20 @@ class N_QueenProblem():
 
             self.cost_map[state] = int(total_cost)
             return int(total_cost)
-    
+
+
     def get_successors(self, state=None):
+        successors, combination = [], []
+        for i in range(self.size-1):
+            for j in range(i+1, self.size):
+                combination.append((i, j))
+        for com in combination:
+            succ = list(copy.deepcopy(state))
+            succ[com[0]], succ[com[1]] = succ[com[1]], succ[com[0]]
+            successors.append(tuple(succ))
+        return successors 
+
+    def get_successors_old(self, state=None):
         successors, combination = [], []
         for i in range(self.size-1):
             for j in range(i+1, self.size):
@@ -86,7 +148,7 @@ class N_QueenProblem():
 
         for com in combination:
             succ = list(copy.deepcopy(state))
-            succ[com[0]], succ[com[1]] = (com[0], succ[com[1]]), (com[1], succ[com[0]])
+            succ[com[0]], succ[com[1]] = (com[0], succ[com[1]][1]), (com[1], succ[com[0]][1])
             successors.append(tuple(succ))
         # print(successors)
         return successors
@@ -94,6 +156,15 @@ class N_QueenProblem():
     def show(self):
         self.env.show()
         return
+
+    def random_generate_state(self):
+        choice = np.random.choice(self.size, self.size, replace=False)
+        return tuple(choice)
+        
+        state = ()
+        for i in range(self.size):
+            state += ((i, choice[i]), )
+        return state
 
     def _random_generate(self):
         choice = np.random.choice(self.size, self.size, replace=False)

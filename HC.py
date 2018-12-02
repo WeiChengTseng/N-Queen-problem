@@ -1,12 +1,13 @@
 import numpy as np
-import problem
+import problem_new as problem
 import matplotlib.pyplot as plt
 import time
 
 class HC():
     def __init__(self, problem, max_iter=100):
         self.prob = problem
-        self.current_state = self.prob.current_state
+        self.current_state = self.prob.random_generate_state()
+        # print(self.current_state)
         self.max_iter = max_iter
         self.cost_history = []
         self.runtime = 0
@@ -21,9 +22,9 @@ class HC():
             costs = [self.prob.cost(i) for i in successors]
             neighbor_idx = np.argmin(costs)
             neighbor = successors[neighbor_idx]
-            # print(costs[neighbor_idx])
-            print(self.prob.cost(self.current_state))
-            print(costs)
+            print(costs[neighbor_idx])
+            # print(self.prob.cost(self.current_state))
+            # print(costs)
 
             if costs[neighbor_idx] >= self.prob.cost(self.current_state):
                 break
@@ -34,7 +35,7 @@ class HC():
         self.runtime = time.time() - start_time
         # print(self.runtime)
         # print(self.cost_history[-1])
-        print('---')
+        # print('---')
         return
 
     def result(self, visualization=False):
@@ -52,6 +53,6 @@ class HC():
 
 if __name__ == '__main__':
     prob = problem.N_QueenProblem(15)
-    hc = HC(prob, max_iter=30)
+    hc = HC(prob, max_iter=8)
     hc.loop()
     hc.result(visualization=True)
