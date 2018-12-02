@@ -15,7 +15,7 @@ class GA():
         self.population = self._random_generate_population()
         self.m_rate = mutation_rate
         self.fitness_fn = self.prob.cost
-        self.parent_size = int(population_size * 0.5)
+        self.parent_size = int(population_size * 1)
         self.fitness_history = []
         return
 
@@ -111,7 +111,7 @@ class GA():
         best_individual = self.population[best_idx]
         # print(fitness[best_idx])
         if visualization:
-            plt.plot(range(len(self.fitness_history)), self.fitness_history, 'o-')
+            plt.plot(range(len(self.fitness_history)), self.fitness_history, '.-')
             plt.xlabel('the number of iterations')
             plt.ylabel('the number of attacks')
             plt.show()
@@ -127,10 +127,10 @@ if __name__ == '__main__':
     x = (0, 1, 3, 2, 4, 5)
     y = (0, 1, 5, 3, 2, 4)
     
-    prob = problem.N_QueenProblem(8)
-    ga = GA(prob, max_iter=30)
+    prob = problem.N_QueenProblem(50)
+    ga = GA(prob, population_size=1000, max_iter=120)
     ga.loop()
-    ga.result(True)
+    print(ga.result(True)[2])
 
     # print(ga.reproduce(x, y))
     # print(ga.mutate(x))
