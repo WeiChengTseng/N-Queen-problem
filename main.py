@@ -74,9 +74,9 @@ plt.ylabel('the number of attacks')
 plt.title('Comparison for Different Methods for 8-Queen Problem')
 plt.legend()
 plt.grid()
-plt.tight_layout()
+# plt.tight_layout()
 plt.savefig('./result/8-queen.jpg', dpi=500)
-plt.show()
+# plt.show()
 
 # exit(0)
 # Problem (2): 50-queen problem (n = 50)
@@ -92,6 +92,7 @@ for i in range(num_trails):
     if final_cost == 0:
         num_succ += 1
     del prob, hc
+    hc_cost.append(cost_his)
 
 print('Problem (2): 50-queen problem (n = 50)')    
 print('    Hill Climbing')   
@@ -107,7 +108,7 @@ ga_cost = []
 aver_cost, aver_runtime, num_succ = [], [], 0
 for i in range(num_trails):
     prob = problem.N_QueenProblem(50)
-    ga = GA.GA(prob, population_size=100, max_iter=120)
+    ga = GA.GA(prob, population_size=1000, max_iter=120)
     ga.loop()
     sol, runtime, final_cost, cost_his = ga.result()
     aver_runtime.append(runtime)
@@ -115,6 +116,7 @@ for i in range(num_trails):
     if final_cost == 0:
         num_succ += 1
     del prob, ga
+    ga_cost.append(cost_his)
 
 print('    Genetic Algorithm')    
 print('\tAverage Runtime :', np.average(aver_runtime))
@@ -131,6 +133,6 @@ plt.ylabel('the number of attacks')
 plt.title('Comparison for Different Methods for 50-Queen Problem')
 plt.legend()
 plt.grid()
-plt.tight_layout()
+# plt.tight_layout()
 plt.savefig('./result/50-queen.jpg', dpi=500)
-plt.show()
+# plt.show()
