@@ -3,7 +3,7 @@ import HC
 import problem_new as problem
 import matplotlib.pyplot as plt
 import numpy as np
-import tqdm
+# import tqdm
 
 def statics(cost_his):
     max_len = max(list(map(len, cost_his)))
@@ -27,7 +27,7 @@ population_size = 800
 for sel_mode in ['TS', 'FPS']:
     ga_cost = []
     aver_cost, aver_runtime, num_succ = [], [], 0
-    for i in tqdm.tqdm(range(num_trails)):
+    for i in (range(num_trails)):
         prob = problem.N_QueenProblem(N)
         ga = GA.GA(prob, max_iter=max_iter, mut_mode='SWAP', sel_mode=sel_mode, population_size=population_size)
         ga.loop()
@@ -52,7 +52,7 @@ for sel_mode in ['TS', 'FPS']:
 
     ga_cost = []
     aver_cost, aver_runtime, num_succ = [], [], 0
-    for i in tqdm.tqdm(range(num_trails)):
+    for i in (range(num_trails)):
         prob = problem.N_QueenProblem(N)
         ga = GA.GA(prob, max_iter=max_iter, mut_mode='SCRAMBLE', sel_mode=sel_mode, population_size=population_size)
         ga.loop()
@@ -76,7 +76,7 @@ for sel_mode in ['TS', 'FPS']:
 
     ga_cost = []
     aver_cost, aver_runtime, num_succ = [], [], 0
-    for i in tqdm.tqdm(range(num_trails)):
+    for i in (range(num_trails)):
         prob = problem.N_QueenProblem(N)
         ga = GA.GA(prob, max_iter=max_iter, mut_mode='INVERSION', sel_mode=sel_mode, population_size=population_size)
         ga.loop()
@@ -100,7 +100,7 @@ for sel_mode in ['TS', 'FPS']:
 
     ga_cost = []
     aver_cost, aver_runtime, num_succ = [], [], 0
-    for i in tqdm.tqdm(range(num_trails)):
+    for i in (range(num_trails)):
         prob = problem.N_QueenProblem(N)
         ga = GA.GA(prob, max_iter=max_iter, mut_mode='INSERT', sel_mode=sel_mode, population_size=population_size)
         ga.loop()
