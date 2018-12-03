@@ -57,6 +57,18 @@ The N queens puzzle is the problem of placing eight chess queens on an N×N ches
 |Geneic Algorithm|0.38| 
 
 ![](./result/50-queen.png)
+
+### 3. Methods
+First, we formulate the problem formally.
+#### Hill Climbing
+* state: 
+* successor:
+* cost:
+
+#### Genetic Algorithm
+![](./result/GA-compare_ts.png)
+![](./result/GA-compare_fps.png)
+
 ## Source Code
 * main.py
 * problem.py

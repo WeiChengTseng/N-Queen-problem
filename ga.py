@@ -6,17 +6,23 @@ import problem_new as problem
 import matplotlib.pyplot as plt
 
 class GA():
-    def __init__(self, problem, mutation_rate=0.1,population_size=50, max_iter=100):
+    def __init__(self, problem, mutation_rate=0.05, population_size=50, max_iter=100, sel_mode='FPS', mut_mode='SWAP', sur_mode='FB'):
         self.prob = problem
-        # self.current_state = problem.random_generate_state()
         self.max_iter = max_iter
-        self.runtime = 0
+
+        self.m_rate = mutation_rate
+        self.parent_size = int(population_size * 0.8)
         self.population_size = population_size
         self.population = self._random_generate_population()
-        self.m_rate = mutation_rate
         self.fitness_fn = self.prob.cost
-        self.parent_size = int(population_size * 0.8)
+        
         self.fitness_history = []
+        self.runtime = 0
+
+        self.co_mode = 'OX'
+        self.mut_mode = mut_mode
+        self.sel_mode = sel_mode
+        self.sur_mode = sur_mode
         return
 
     def selection(self, i):
@@ -24,8 +30,15 @@ class GA():
         if i == 0:
             self.fitness = 1/(np.array(list(map(self.fitness_fn, self.population)))+1)
             self.fitness /= np.sum(self.fitness)
-        individual_idx = np.random.choice(self.population_size, p=self.fitness)
-        individual = self.population[individual_idx]
+        if self.sel_mode == 'FPS':
+            individual_idx = np.random.choice(self.population_size, p=self.fitness)
+            individual = self.population[individual_idx]
+        elif self.sel_mode == 'TS':
+            ts_size = 20
+            candidate_idx = np.random.choice(self.population_size, ts_size)
+            fitness = list(map(lambda i: self.fitness_fn(self.population[i]), candidate_idx))
+            individual_idx = np.argmin(fitness)
+            individual = self.population[individual_idx]
 
         return individual
 
@@ -61,25 +74,38 @@ class GA():
         return [tuple(c1), tuple(c2)]
 
     def mutate(self, child):
-        # swap mutation
-        # print('child =', child)
-        combination = []
-        for i in range(len(child)-1):
-            for j in range(i+1, len(child)):
-                combination.append((i, j))
-        random.shuffle(combination)
-        com = combination[0]
-
-        mutated = list(copy.deepcopy(child))
-        mutated[com[0]], mutated[com[1]] = mutated[com[1]], mutated[com[0]]
+        mutated = np.array(child)
+        if self.mut_mode == 'SWAP':
+            combination = []
+            for i in range(len(child)-1):
+                for j in range(i+1, len(child)):
+                    combination.append((i, j))
+            random.shuffle(combination)
+            com = combination[0]
+            mutated[com[0]], mutated[com[1]] = mutated[com[1]], mutated[com[0]]
+        else:
+            choice = np.random.choice(len(child), 2, replace=False)
+            s, e = min(choice), max(choice)
+            if self.mut_mode == 'INSERT':
+                tmp = mutated[e]
+                mutated = np.delete(mutated, e)
+                mutated = np.insert(mutated, s, tmp)
+            elif self.mut_mode == 'SCRAMBLE':
+                scramble = np.random.choice(e-s+1, e-s+1, replace=False)
+                mutated[s:e+1] = mutated[s:e+1][scramble]
+            elif self.mut_mode == 'INVERSION':
+                mutated[s:e+1] = np.flip(mutated[s:e+1], axis=0)
         return tuple(mutated)
 
     def survive(self):
-        new_idx = np.argsort(list(map(self.fitness_fn, self.population)))[: self.population_size]
-        new_population = []
-        for i in new_idx:
-            new_population.append(self.population[i])
-        self.population = new_population
+        if self.sur_mode == 'FB':
+            new_idx = np.argsort(list(map(self.fitness_fn, self.population)))[: self.population_size]
+            new_population = []
+            for i in new_idx:
+                new_population.append(self.population[i])
+            self.population = new_population
+        elif self.sur_mode == 'AB':
+            pass
         return
 
     def loop(self):
@@ -129,8 +155,8 @@ if __name__ == '__main__':
     
     prob = problem.N_QueenProblem(50)
     ga = GA(prob, population_size=2000, max_iter=200)
-    ga.loop()
-    print(ga.result(True)[2])
+    # ga.loop()
+    # print(ga.result(True)[2])
 
-    # print(ga.reproduce(x, y))
-    # print(ga.mutate(x))
+    print(ga.reproduce(x, y))
+    print(ga.mutate(x))
