@@ -18,16 +18,17 @@ def statics(cost_his):
     cost_avg = list(map(np.average, cost_his_t))
     return np.array(cost_avg), np.array(cost_std)
 
-num_trails = 10
-N = 25
+num_trails = 100
+N = 50
 max_iter = 160
 sel_mode = 'TS'
+population_size = 1000
 
 ga_cost = []
 aver_cost, aver_runtime, num_succ = [], [], 0
 for i in range(num_trails):
     prob = problem.N_QueenProblem(N)
-    ga = GA.GA(prob, max_iter=max_iter, mut_mode='SWAP', sel_mode=sel_mode)
+    ga = GA.GA(prob, max_iter=max_iter, mut_mode='SWAP', sel_mode=sel_mode, population_size=population_size)
     ga.loop()
     sol, runtime, final_cost, cost_his = ga.result()
     aver_runtime.append(runtime)
@@ -52,7 +53,7 @@ ga_cost = []
 aver_cost, aver_runtime, num_succ = [], [], 0
 for i in range(num_trails):
     prob = problem.N_QueenProblem(N)
-    ga = GA.GA(prob, max_iter=max_iter, mut_mode='SCRAMBLE', sel_mode=sel_mode)
+    ga = GA.GA(prob, max_iter=max_iter, mut_mode='SCRAMBLE', sel_mode=sel_mode, population_size=population_size)
     ga.loop()
     sol, runtime, final_cost, cost_his = ga.result()
     aver_runtime.append(runtime)
@@ -76,7 +77,7 @@ ga_cost = []
 aver_cost, aver_runtime, num_succ = [], [], 0
 for i in range(num_trails):
     prob = problem.N_QueenProblem(N)
-    ga = GA.GA(prob, max_iter=max_iter, mut_mode='INVERSION', sel_mode=sel_mode)
+    ga = GA.GA(prob, max_iter=max_iter, mut_mode='INVERSION', sel_mode=sel_mode, population_size=population_size)
     ga.loop()
     sol, runtime, final_cost, cost_his = ga.result()
     aver_runtime.append(runtime)
@@ -100,7 +101,7 @@ ga_cost = []
 aver_cost, aver_runtime, num_succ = [], [], 0
 for i in range(num_trails):
     prob = problem.N_QueenProblem(N)
-    ga = GA.GA(prob, max_iter=max_iter, mut_mode='INSERT', sel_mode=sel_mode)
+    ga = GA.GA(prob, max_iter=max_iter, mut_mode='INSERT', sel_mode=sel_mode, population_size=population_size)
     ga.loop()
     sol, runtime, final_cost, cost_his = ga.result()
     aver_runtime.append(runtime)
