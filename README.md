@@ -7,6 +7,8 @@ The N queens puzzle is the problem of placing eight chess queens on an N×N ches
 * packages: matplotlib, numpy, random
 * installation  
 `pip install -r requirements.txt`
+* executtion  
+`python main.py`
 
 ## Report 
 ### 1. 8-queen problem (n = 8) 

@@ -7,6 +7,18 @@ import matplotlib.pyplot as plt
 
 class GA():
     def __init__(self, problem, mutation_rate=0.05, population_size=50, max_iter=100, sel_mode='FPS', mut_mode='SWAP', sur_mode='FB'):
+        '''
+        Initialize the object.
+
+        Input:
+        problem: the problem that GA is applied to
+        mutation_rate: the probality the an individual needs to mutate
+        population_size: the population size of GA
+        max_iter: the maximal number of iterations
+        sel_mode: parent selection mode ('FPS' or 'TS')
+        mut_mode: the mutation mode ('SWAP', 'INSERT', 'SCRAMBLE' or 'INVERSION')
+        sur_mode: the survive selection mode ('FB' or 'AB')
+        '''
         self.prob = problem
         self.max_iter = max_iter
 
@@ -26,6 +38,10 @@ class GA():
         return
 
     def selection(self, i):
+        '''
+        Fitness selection
+        '''
+
         # Fitness Selection
         if i == 0:
             self.fitness = 1/(np.array(list(map(self.fitness_fn, self.population)))+1)
