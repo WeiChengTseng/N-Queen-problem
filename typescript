@@ -33,4 +33,81 @@ Fontconfig warning: ignoring UTF-8: not a valid region tag
 ^CTraceback (most recent call last):
   File "main.py", line 54, in <module>
     ga.loop()
-  File "/home/ethan/Tseng/AI/N
+  File "/home/ethan/Tseng/AI/N-Queen-problem/ga.py", line 93, in loop
+    child = self.reproduce(x, y)
+  File "/home/ethan/Tseng/AI/N-Queen-problem/ga.py", line 56, in reproduce
+    while x[acc] in c2[s:e+1]:
+KeyboardInterrupt
+[01;32methan@cedl1[00m:[01;34m~/Tseng/AI/N-Queen-problem[00m$ python main.py [Kpython main.py [Kgit pull
+remote: Enumerating objects: 5, done.[K
+remote: Counting objects:  20% (1/5)   [Kremote: Counting objects:  40% (2/5)   [Kremote: Counting objects:  60% (3/5)   [Kremote: Counting objects:  80% (4/5)   [Kremote: Counting objects: 100% (5/5)   [Kremote: Counting objects: 100% (5/5), done.[K
+remote: Compressing objects: 100% (1/1)   [Kremote: Compressing objects: 100% (1/1), done.[K
+remote: Total 3 (delta 2), reused 3 (delta 2), pack-reused 0[K
+Unpacking objects:  33% (1/3)   Unpacking objects:  66% (2/3)   Unpacking objects: 100% (3/3)   Unpacking objects: 100% (3/3), done.
+From https://github.com/WeiChengTseng/N-Queen-problem
+   5fd6f65..4bf23e5  master     -> origin/master
+Updating 5fd6f65..4bf23e5
+Fast-forward
+ main.py | 2 [32m+[m[31m-[m
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+[01;32methan@cedl1[00m:[01;34m~/Tseng/AI/N-Queen-problem[00m$ git pullpython main.py 
+Problem (1): 8-queen problem (n = 8)
+    Hill Climbing
+	Average Runtime : 0.006539721488952637
+	Average Number of Attacks : 0.57
+	Success Rate : 0.49
+Fontconfig warning: ignoring UTF-8: not a valid region tag
+    Genetic Algorithm
+	Average Runtime : 0.17099618434906005
+	Average Number of Attacks : 0.04
+	Success Rate : 0.96
+Problem (2): 50-queen problem (n = 50)
+    Hill Climbing
+	Average Runtime : 22.0720796251297
+	Average Number of Attacks : 0.86
+	Success Rate : 0.39
+    Genetic Algorithm
+	Average Runtime : 217.56884859561922
+	Average Number of Attacks : 0.79
+	Success Rate : 0.38
+[01;32methan@cedl1[00m:[01;34m~/Tseng/AI/N-Queen-problem[00m$ git add.[K .
+[01;32methan@cedl1[00m:[01;34m~/Tseng/AI/N-Queen-problem[00m$ git commiit -m ''n'e'w' 'f'i'g'
+git: 'commiit' is not a git command. See 'git --help'.
+
+Did you mean this?
+	commit
+[01;32methan@cedl1[00m:[01;34m~/Tseng/AI/N-Queen-problem[00m$ git commiit -m 'new fig'[C[1P
+[master c865111] new fig
+ 4 files changed, 70 insertions(+)
+ rewrite result/50-queen.png (90%)
+ rewrite result/8-queen.png (92%)
+ create mode 100644 t
+ create mode 100644 typescript
+[01;32methan@cedl1[00m:[01;34m~/Tseng/AI/N-Queen-problem[00m$ git push
+warning: push.default is unset; its implicit value has changed in
+Git 2.0 from 'matching' to 'simple'. To squelch this message
+and maintain the traditional behavior, use:
+
+  git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:
+
+  git config --global push.default simple
+
+When push.default is set to 'matching', git will push local branches
+to the remote branches that already exist with the same name.
+
+Since Git 2.0, Git defaults to the more conservative 'simple'
+behavior, which only pushes the current branch to the corresponding
+remote branch that 'git pull' uses to update the current branch.
+
+See 'git help config' and search for 'push.default' for further information.
+(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+'current' instead of 'simple' if you sometimes use older versions of Git)
+
+Username for 'https://github.com': WeiChengTseng
+Password for 'https://WeiChengTseng@github.com': 
+Counting objects: 7, done.
+Delta compression using up to 12 threads.
+Compressing objects:  14% (1/7)   Compressing objects:  28% (2/7)   Compressing objects:  42% (3/7)   Compressing objects:  57% (4/7)   Compressing objects:  71% (5/7)   Compressing objects:  85% (6/7)   Compressing objects: 100% (7/7)   Compressing objects: 100% (7/7), done.
+Writing objects:  14% (1/7)   Writing objects:  28% (2/7)   Writing objects:  42% (3/7)   Writing objects:  57% (4/7)   Writing objects:  71% (5/7)   Writing objects: 100% (7/7)   Writing objects: 100% (
