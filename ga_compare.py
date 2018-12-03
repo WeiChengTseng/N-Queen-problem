@@ -23,7 +23,7 @@ num_trails = 30
 N = 50
 max_iter = 160
 sel_mode = 'TS'
-population_size = 1000
+population_size = 500
 
 ga_cost = []
 aver_cost, aver_runtime, num_succ = [], [], 0
