@@ -3,7 +3,6 @@ import HC
 import problem_new as problem
 import matplotlib.pyplot as plt
 import numpy as np
-# import progressbar
 
 def statics(cost_his):
     max_len = max(list(map(len, cost_his)))
