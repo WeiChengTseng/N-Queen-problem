@@ -19,10 +19,10 @@ def statics(cost_his):
     return np.array(cost_avg), np.array(cost_std)
 
 num_trails = 30
-N = 50
+N = 8
 max_iter = 160
 sel_mode = 'TS'
-population_size = 500
+population_size = 50
 
 ga_cost = []
 aver_cost, aver_runtime, num_succ = [], [], 0
