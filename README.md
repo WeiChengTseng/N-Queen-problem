@@ -4,7 +4,7 @@ The N queens puzzle is the problem of placing eight chess queens on an N×N ches
 
 ## Environment  
 * python 3.6
-* packages: matplotlib, numpy, multiprocessing
+* packages: matplotlib, numpy, random
 * installation  
 `pip install -r requirements.txt`
 
@@ -39,22 +39,22 @@ The N queens puzzle is the problem of placing eight chess queens on an N×N ches
 
 |Methods         |the Final Number of Attacks|  
 |----------------|---------------------------|
-|Hill Climbing   |3.266| 
-|Geneic Algorithm|the Final Number of Attacks| 
+|Hill Climbing   |0.86| 
+|Geneic Algorithm|0.79| 
 
 (b) Compare the average running time for the three methods to get a solution.  
 
 |Methods         |Average Runtime|  
 |----------------|---------------------------|
-|Hill Climbing   |75.884 seconds| 
-|Geneic Algorithm|the Final Number of Attacks| 
+|Hill Climbing   |22.072 seconds| 
+|Geneic Algorithm|217.569 seconds| 
 
 (c) Compare the success rate (SR) of HC and GA.
 
 |Methods         |Success Rate|  
 |----------------|---------------------------|
-|Hill Climbing   |0.0| 
-|Geneic Algorithm|the Final Number of Attacks| 
+|Hill Climbing   |0.39| 
+|Geneic Algorithm|0.38| 
 
 ![](./result/50-queen.png)
 ## Source Code
