@@ -19,7 +19,7 @@ def statics(cost_his):
     cost_avg = list(map(np.average, cost_his_t))
     return np.array(cost_avg), np.array(cost_std)
 
-num_trails = 100
+num_trails = 30
 N = 50
 max_iter = 160
 sel_mode = 'TS'
