@@ -27,7 +27,7 @@ population_size = 500
 
 ga_cost = []
 aver_cost, aver_runtime, num_succ = [], [], 0
-for i in (range(num_trails)):
+for i in range(num_trails):
     prob = problem.N_QueenProblem(N)
     ga = GA.GA(prob, max_iter=max_iter, mut_mode='SWAP', sel_mode=sel_mode, population_size=population_size)
     ga.loop()
@@ -52,7 +52,7 @@ plt.fill_between(x_range, ga_avg + ga_std, ga_avg - ga_std, alpha=0.15)
 
 ga_cost = []
 aver_cost, aver_runtime, num_succ = [], [], 0
-for i in (range(num_trails)):
+for i in range(num_trails):
     prob = problem.N_QueenProblem(N)
     ga = GA.GA(prob, max_iter=max_iter, mut_mode='SCRAMBLE', sel_mode=sel_mode, population_size=population_size)
     ga.loop()
@@ -76,7 +76,7 @@ plt.fill_between(x_range, ga_avg + ga_std, ga_avg - ga_std, alpha=0.15)
 
 ga_cost = []
 aver_cost, aver_runtime, num_succ = [], [], 0
-for i in (range(num_trails)):
+for i in range(num_trails):
     prob = problem.N_QueenProblem(N)
     ga = GA.GA(prob, max_iter=max_iter, mut_mode='INVERSION', sel_mode=sel_mode, population_size=population_size)
     ga.loop()
@@ -100,7 +100,7 @@ plt.fill_between(x_range, ga_avg + ga_std, ga_avg - ga_std, alpha=0.15)
 
 ga_cost = []
 aver_cost, aver_runtime, num_succ = [], [], 0
-for i in (range(num_trails)):
+for i in range(num_trails):
     prob = problem.N_QueenProblem(N)
     ga = GA.GA(prob, max_iter=max_iter, mut_mode='INSERT', sel_mode=sel_mode, population_size=population_size)
     ga.loop()
