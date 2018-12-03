@@ -20,7 +20,7 @@ def statics(cost_his):
     return np.array(cost_avg), np.array(cost_std)
 
 num_trails = 30
-N = 8
+N = 50
 max_iter = 160
 sel_mode = 'TS'
 population_size = 800
