@@ -66,8 +66,11 @@ First, we formulate the problem formally.
 * cost:
 
 #### Genetic Algorithm
-![](./result/GA-compare_ts.png)
-![](./result/GA-compare_fps.png)
+TS
+![](./result/GA-compare_TS.png)
+
+FPS
+![](./result/GA-compare_FPS.png)
 
 ## Source Code
 * main.py

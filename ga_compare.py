@@ -21,7 +21,7 @@ def statics(cost_his):
 num_trails = 10
 N = 25
 max_iter = 160
-sel_mode = 'FPS'
+sel_mode = 'TS'
 
 ga_cost = []
 aver_cost, aver_runtime, num_succ = [], [], 0
