@@ -42,9 +42,9 @@ print('\tAverage Number of Attacks :', np.average(aver_cost))
 print('\tSuccess Rate :', num_succ / num_trails)
 hc_avg, hc_std = statics(hc_cost)
 x_range = np.arange(len(hc_avg))
-# plt.rcParams["figure.figsize"] = [16, 9]
-# plt.plot(x_range, hc_avg, label='Hill Climbing')
-# plt.fill_between(x_range, hc_avg + hc_std, hc_avg - hc_std, alpha=0.15)
+plt.rcParams["figure.figsize"] = [16, 9]
+plt.plot(x_range, hc_avg, label='Hill Climbing')
+plt.fill_between(x_range, hc_avg + hc_std, hc_avg - hc_std, alpha=0.15)
 
 ga_cost = []
 aver_cost, aver_runtime, num_succ = [], [], 0
