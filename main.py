@@ -108,7 +108,7 @@ ga_cost = []
 aver_cost, aver_runtime, num_succ = [], [], 0
 for i in range(num_trails):
     prob = problem.N_QueenProblem(50)
-    ga = GA.GA(prob, population_size=1000, max_iter=120)
+    ga = GA.GA(prob, population_size=1000, max_iter=200)
     ga.loop()
     sol, runtime, final_cost, cost_his = ga.result()
     aver_runtime.append(runtime)
