@@ -6,7 +6,7 @@ import problem_new as problem
 import matplotlib.pyplot as plt
 
 class GA():
-    def __init__(self, problem, mutation_rate=0.05, population_size=50, max_iter=100, sel_mode='FPS', mut_mode='SWAP', sur_mode='FB'):
+    def __init__(self, problem, mutation_rate=0.05, population_size=50, max_iter=100, sel_mode='FPS', mut_mode='SWAP'):
         '''
         Initialize the object.
 
@@ -34,12 +34,14 @@ class GA():
         self.co_mode = 'OX'
         self.mut_mode = mut_mode
         self.sel_mode = sel_mode
-        self.sur_mode = sur_mode
         return
 
     def selection(self, i):
         '''
         Fitness selection
+
+        Input:
+        - i: if i = 0, we calculate all the cost and bootkeep it. 
         '''
 
         # Fitness Selection
@@ -60,8 +62,6 @@ class GA():
 
     def reproduce(self, x, y):
         # order crossover (OX)
-        # print('x =', x)
-        # print('y =', y)
         choice = np.random.choice(len(x), 2, replace=False)
         s, e = min(choice), max(choice)
         c1, c2 = np.zeros((2, len(x)), dtype=int)
@@ -70,9 +70,6 @@ class GA():
             return [tuple(c1), tuple(c2)]
 
         fix = list(map(lambda i: i % len(x), range(e+1, e+len(x)-(e-s+1)+1)))
-        # print(s, e)
-        # print('fix =', fix)
-        # print(fix)
         acc = fix[0]
         for i in fix:
             while y[acc] in c1[s:e+1]:
@@ -114,14 +111,11 @@ class GA():
         return tuple(mutated)
 
     def survive(self):
-        if self.sur_mode == 'FB':
-            new_idx = np.argsort(list(map(self.fitness_fn, self.population)))[: self.population_size]
-            new_population = []
-            for i in new_idx:
-                new_population.append(self.population[i])
-            self.population = new_population
-        elif self.sur_mode == 'AB':
-            pass
+        new_idx = np.argsort(list(map(self.fitness_fn, self.population)))[: self.population_size]
+        new_population = []
+        for i in new_idx:
+            new_population.append(self.population[i])
+        self.population = new_population
         return
 
     def loop(self):
@@ -149,9 +143,7 @@ class GA():
     def result(self, visualization=False):
         fitness = [self.fitness_fn(i) for i in self.population]
         best_idx = np.argmin(fitness)
-        # print(best_idx)
         best_individual = self.population[best_idx]
-        # print(fitness[best_idx])
         if visualization:
             plt.plot(range(len(self.fitness_history)), self.fitness_history, '.-')
             plt.xlabel('the number of iterations')

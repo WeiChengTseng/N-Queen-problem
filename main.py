@@ -3,7 +3,7 @@ import HC
 import problem_new as problem
 import matplotlib.pyplot as plt
 import numpy as np
-num_trails = 100
+num_trails = 1
 
 def statics(cost_his):
     max_len = max(list(map(len, cost_his)))
